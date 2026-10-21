@@ -56,7 +56,7 @@ r = await handleAsk(req('POST', { ...ask, text: '  ' }, { 'Cf-Access-Jwt-Asserti
 r = await handleAsk(req('POST', { ...ask, page: 'https://example.com/' }, { 'Cf-Access-Jwt-Assertion': good }), env, fake); assert.equal(r.status, 400);
 r = await handleAsk(req('POST', { ...ask, text: 'x'.repeat(5000) }, { 'Cf-Access-Jwt-Assertion': good }), env, fake); assert.equal(r.status, 400);
 
-// a good ask opens one "Page edits:" issue as the owner (the token's account), in the editor's report format
+// a good ask opens one "Page edits:" issue as the owner (the token's account), in the page-edits report format
 calls.length = 0;
 r = await handleAsk(req('POST', ask, { 'Cf-Access-Jwt-Assertion': good, Origin: 'https://ask.anawj.com' }), env, fake);
 assert.equal(r.status, 200);

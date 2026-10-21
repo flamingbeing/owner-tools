@@ -1,7 +1,7 @@
 # owner-tools
 
 Instructions for every AI assistant working here (Claude Code reads this through `CLAUDE.md`).
-The site owner's own tools: Ask Claude (`ask/`, ask.anawj.com, owner-only) and the page editor (`edit/`). They open "Page edits:" issues in whichever repo owns the page. Only the owner uses them.
+The site owner's own tools: Ask Claude (`ask/`, ask.anawj.com, owner-only). It opens "Page edits:" issues in whichever repo owns the page. Only the owner uses them.
 
 ## Public here, private elsewhere
 
@@ -12,7 +12,7 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
 ## Rules that bite
 
 - One Worker (`worker/`) serves ask.anawj.com; its only API is `/api/ask` (`worker/ask.js`), which checks the Cloudflare Access token itself.
-- Page-to-repo maps: `REPOS` in `worker/ask.js` and in `edit/index.html`; keep them equal.
+- Page-to-repo map: `REPOS` in `worker/ask.js`. How issues become PRs: `page-edits.md`.
 - No secrets here: the Worker's values are set in Cloudflare.
 
 ## Checks before merging
@@ -20,14 +20,14 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
 ```
 node tools/check.mjs        # repo checks + Worker tests
 node tools/proofread.mjs    # page and doc mistakes
-node edit/test/e2e.mjs && node ask/test/e2e.mjs   # browser tests (PLAYWRIGHT_PATH, CHROMIUM_PATH)
+node ask/test/e2e.mjs        # browser test (PLAYWRIGHT_PATH, CHROMIUM_PATH)
 ```
 
 ## Working with the owner
 
 - Instructions mostly come from a phone. Work through a request to the end; ask only when a decision is genuinely
   the owner's. When asked to plan, plan and wait.
-- Keep each PR small and finished on its own. Start PR titles with the app: "Ask: …" or "Edit: …".
+- Keep each PR small and finished on its own. Start PR titles with the app: "Ask: …".
 - Merge your own PRs once the checks pass, then report with the PR link (merge by the number the PR creation
   returned). After opening a PR, call `unsubscribe_pr_activity` at once: each PR event re-sends the whole context.
 - Push once per finished step, not after every small commit (limited build minutes).

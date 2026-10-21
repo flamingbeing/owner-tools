@@ -1,4 +1,4 @@
-// "Ask Claude" (edit/NOTES.md): the API behind ask.anawj.com, the owner's page for asking for a change in one step.
+// "Ask Claude" (page-edits.md): the API behind ask.anawj.com, the owner's page for asking for a change in one step.
 //   POST /api/ask          {page, on, locator, text, options, everywhere} -> opens a "Page edits:" issue as the owner,
 //                          which starts the instant page-edits workflow (.github/workflows/page-edits.yml) -> {issue, url}
 //   GET  /api/ask?issue=N  -> {issue, pr, prUrl, preview} once the workflow has drafted its PR

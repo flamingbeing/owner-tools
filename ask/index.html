@@ -9,7 +9,7 @@
 <title>Ask Claude</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23002f6c'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EA%3C/text%3E%3C/svg%3E">
 <style>
-/* Ask Claude: the owner's one-step change request (edit/NOTES.md, "Ask Claude"). Behind Cloudflare Access; the API is
+/* Ask Claude: the owner's one-step change request (page-edits.md, "Ask Claude"). Behind Cloudflare Access; the API is
    worker/ask.js. */
 :root{--ink:#222;--muted:#555b63;--navy:#002f6c;--line:#d9d9d9;--inset:#eef2f7;--control:#7a8592}
 *{box-sizing:border-box}
@@ -81,7 +81,7 @@ a{color:var(--navy)}
   if (q.get('options') === '1') $('optOptions').checked = true;
   if (q.get('everywhere') === '1') $('optEverywhere').checked = true;
 
-  // the same check as the page editor and the feedback button (feedback/test/privacy.test.mjs keeps them in step)
+  // a check for things shaped like patient details (ask/test/e2e.mjs covers it)
   const PRIVATE = [
     [/\b[STFGM]\d{7}[A-Z]\b/i, 'an NRIC or FIN'],
     [/\b\d{7,}\b/, 'a long number (a hospital or case number?)'],

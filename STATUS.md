@@ -1,8 +1,7 @@
 # Status
 
 ## Now
-- Imported from the main site repo (21 Oct 2026): ask, edit, the Ask Claude API and its tests; issues open in the repo
-  that owns the page.
+- Ask Claude only (the page editor was dropped 21 Oct 2026); issues open in the repo that owns the page.
 
 ## Waiting on the owner
 - Connect this repo to a Worker in Workers Builds, and move ask.anawj.com off the old Worker.
@@ -10,10 +9,12 @@
   as an Actions secret in each of them.
 
 ## Next (in order)
-1. Landing step: the editor's own address moves here.
+- Nothing planned.
 
 ## Recently done
+- Page editor (`edit/`) removed; its rules for applying page edits kept in `page-edits.md`.
 - Worker, API and tests for the host-to-repo map.
 
 ## Decisions (dated, one line each)
-- 21 Oct 2026: each page-owning repo carries its own copy of `page-edits.yml`; Ask Claude and the editor pick the repo.
+- 21 Oct 2026: each page-owning repo carries its own copy of `page-edits.yml`; Ask Claude picks the repo.
+- 21 Oct 2026: page editor dropped (owner); Ask Claude only.
