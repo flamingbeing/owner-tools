@@ -1,0 +1,48 @@
+# The merge checklist from AGENTS.md, run on every PR (and on main): the repo check (with the Worker tests), the
+# proof-read, and the browser tests of the page editor and Ask Claude.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Repo check
+        run: node tools/check.mjs
+      - name: Unit tests
+        run: for f in worker/test/*.test.mjs; do echo "== $f"; node "$f" || exit 1; done
+      - name: Proof-read (pages and documents)
+        run: node tools/proofread.mjs
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install a browser
+        run: |
+          npm install -g playwright@1.56.1
+          playwright install --with-deps chromium
+      - name: Page editor and Ask Claude
+        run: |
+          export PLAYWRIGHT_PATH="$(npm root -g)/playwright/index.mjs"
+          node edit/test/e2e.mjs && node ask/test/e2e.mjs
