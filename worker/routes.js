@@ -9,7 +9,8 @@
 //                                             root add a few extra folders)
 //      or { moved: { '/old/': 'https://example.org/new/' } }  (apps now on another site: each path forwards there)
 export const SITES = {
-  'example.example.com': { root: 'example/' },
+  // Ask Claude, the owner's page (behind Cloudflare Access; its API is worker/ask.js)
+  'ask.anawj.com': { root: 'ask/' },
 };
 
 // Folders every host serves as they are (shared files, no data), e.g. ['/shared/']
