@@ -12,6 +12,11 @@ test('a root host serves its folder', () => {
   assert.deepEqual(resolve('ask.anawj.com', '/ask/index.html'), { file: 'ask/index.html' });
 });
 
+test('the Obsidian forwarder is served at /o/', () => {
+  assert.deepEqual(resolve('ask.anawj.com', '/o/'), { file: 'o/' });
+  assert.deepEqual(resolve('ask.anawj.com', '/o/index.html'), { file: 'o/index.html' });
+});
+
 test('unknown hosts serve nothing; localhost serves the repo', () => {
   assert.deepEqual(resolve('x.workers.dev', '/ask/'), { notFound: true });
   assert.deepEqual(resolve('other.anawj.com', '/'), { notFound: true });

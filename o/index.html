@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#002f6c">
+<meta name="robots" content="noindex,nofollow">
+<title>Open in Obsidian</title>
+<style>
+/* Open in Obsidian: forwards /o/?vault=NAME&file=PATH to obsidian://open. Some apps (e.g. chat apps) only open
+   https links, so a link here reaches Obsidian through the browser. Holds no data: the vault name and path travel in the link. */
+:root{--ink:#222;--muted:#555b63;--navy:#002f6c}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.band{height:6px;background:linear-gradient(90deg,#e57200 25%,#e4002b 25% 50%,#178fd7 50% 75%,#002f6c 75%)}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font:600 24px/1.2 system-ui,sans-serif;color:var(--navy);margin:8px 0 12px}
+p{margin:0 0 10px}
+.muted{color:var(--muted);font-size:14px;word-break:break-all}
+a.go{display:inline-block;min-height:44px;padding:10px 16px;background:var(--navy);color:#fff;text-decoration:none;font-weight:500}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<main>
+<h1>Open in Obsidian</h1>
+<p id="msg">Opening Obsidian…</p>
+<p><a class="go" id="go" href="#" hidden>Open in Obsidian</a></p>
+<p class="muted" id="what"></p>
+</main>
+<script>
+// Only vault and file are forwarded, re-encoded, so the page can only ever build an obsidian://open link.
+const q = new URLSearchParams(location.search);
+const vault = q.get('vault'), file = q.get('file');
+const msg = document.getElementById('msg'), go = document.getElementById('go');
+if (!vault) {
+  msg.textContent = 'Add ?vault=NAME&file=PATH to the address, e.g. /o/?vault=Life&file=MEMORY';
+} else {
+  const params = new URLSearchParams({ vault });
+  if (file) params.set('file', file);
+  // URLSearchParams writes spaces as "+", Obsidian wants %20
+  const uri = 'obsidian://open?' + params.toString().replace(/\+/g, '%20');
+  go.href = uri;
+  go.hidden = false;
+  document.getElementById('what').textContent = vault + (file ? ' / ' + file : '');
+  msg.textContent = 'Opening Obsidian… if nothing happens, tap the button.';
+  location.href = uri;
+}
+</script>
+</body>
+</html>

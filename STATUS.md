@@ -12,6 +12,7 @@
 - Nothing planned.
 
 ## Recently done
+- `/o/` on ask.anawj.com forwards `?vault=&file=` to the Obsidian app (chat apps only open https links).
 - Page editor (`edit/`) removed; its rules for applying page edits kept in `page-edits.md`.
 - Worker, API and tests for the host-to-repo map.
 

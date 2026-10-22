@@ -10,7 +10,8 @@
 //      or { moved: { '/old/': 'https://example.org/new/' } }  (apps now on another site: each path forwards there)
 export const SITES = {
   // Ask Claude, the owner's page (behind Cloudflare Access; its API is worker/ask.js)
-  'ask.anawj.com': { root: 'ask/' },
+  // /o/ forwards a link to the Obsidian app (o/index.html)
+  'ask.anawj.com': { root: 'ask/', prefixes: { '/o/': 'o/' } },
 };
 
 // Folders every host serves as they are (shared files, no data), e.g. ['/shared/']
