@@ -2,18 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#002f6c">
 <meta name="robots" content="noindex,nofollow">
 <title>Ask Claude</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23002f6c'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3EA%3C/text%3E%3C/svg%3E">
+<!-- behind Cloudflare Access: the manifest fetch must carry the sign-in cookie -->
+<link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ask Claude">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <style>
 /* Ask Claude: the owner's one-step change request (page-edits.md, "Ask Claude"). Behind Cloudflare Access; the API is
    worker/ask.js. */
 :root{--ink:#222;--muted:#555b63;--navy:#002f6c;--line:#d9d9d9;--inset:#eef2f7;--control:#7a8592}
 *{box-sizing:border-box}
-body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
 .band{height:6px;background:linear-gradient(90deg,#e57200 25%,#e4002b 25% 50%,#178fd7 50% 75%,#002f6c 75%)}
 main{max-width:640px;margin:0 auto;padding:16px}
 h1{font:600 24px/1.2 system-ui,sans-serif;color:var(--navy);margin:8px 0 4px}
