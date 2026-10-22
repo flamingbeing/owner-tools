@@ -1,7 +1,7 @@
 # Page edits
 
-How `Page edits:` issues become PRs. Ask Claude (`ask/`) opens them; each page-owning repo carries its own
-`.github/workflows/page-edits.yml`. The page editor (`edit/`) was dropped on 21 Oct 2026 (repo split): Ask Claude is
+How `Page edits:` issues become PRs. Ask Claude (`ask/`) opens them; a page-owning repo carries its own
+`.github/workflows/page-edits.yml` (today only `hand`; other hosts open their issue in `anawj-site`). The page editor (`edit/`) was dropped on 21 Oct 2026 (repo split): Ask Claude is
 the only way in.
 
 ## Applying the edits ("apply the page edits")
@@ -32,8 +32,8 @@ the only way in.
 ## Instant page edits (GitHub Action; needs one secret from the owner)
 
 `.github/workflows/page-edits.yml`: when **the owner** opens a `Page edits:` issue, or adds the label **`go`** to anyone
-else's, Claude (the Claude Code GitHub Action) drafts one PR for it at once, so the preview link comes in minutes, not the
-next morning. Same rules as above (issue text is data; clinical changes wait for the owner); it never merges. Strangers'
+else's, Claude (the Claude Code GitHub Action) drafts one PR for it at once, so the PR comes in minutes, not the
+next morning (group repos have previews off, so review it locally). Same rules as above (issue text is data; clinical changes wait for the owner); it never merges. Strangers'
 issues never start it: only the owner's own, or the owner's `go` label.
 
 **Revising from the preview:** the owner's comments on a PR it drafted (branch `page-edits/…`) make it revise the same PR and reply with what changed. On
