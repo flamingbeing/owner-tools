@@ -9,6 +9,7 @@
 <title>Ask Claude</title>
 <!-- behind Cloudflare Access: the manifest fetch must carry the sign-in cookie -->
 <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+<script>addEventListener('beforeinstallprompt', e => e.preventDefault());</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Ask Claude">
