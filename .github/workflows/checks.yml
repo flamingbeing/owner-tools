@@ -29,7 +29,7 @@ jobs:
         run: node tools/proofread.mjs
 
   browser:
-    runs-on: ubuntu-24.04  # Playwright 1.56 has no Chromium for 26.04 (ubuntu-24.04)
+    runs-on: ubuntu-24.04  # Playwright 1.56 has no Chromium for 26.04 (ubuntu-latest)
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
