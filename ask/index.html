@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#002f6c">
 <meta name="robots" content="noindex,nofollow">
 <title>Ask Claude</title>
@@ -16,37 +16,48 @@
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="icon" href="icons/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script type="importmap">
+{ "imports": { "@core/theme": "https://core.anawj.com/ui/1.0.0-rc.25/theme/index.js" } }
+</script>
+<script src="https://core.anawj.com/ui/1.0.0-rc.25/theme/early.js"></script>
+<link rel="stylesheet" href="https://design.anawj.com/v1/tokens.css">
+<link rel="stylesheet" href="https://core.anawj.com/ui/1.0.0-rc.25/theme/theme.css">
 <style>
 /* Ask Claude: the owner's one-step change request (page-edits.md, "Ask Claude"). Behind Cloudflare Access; the API is
    worker/ask.js. */
-:root{--ink:#222;--muted:#555b63;--navy:#002f6c;--line:#d9d9d9;--inset:#eef2f7;--control:#7a8592}
+:root{--a-ink:#222;--a-muted:#555b63;--a-navy:#002f6c;--a-line:#d9d9d9;--a-inset:#eef2f7;--a-control:#7a8592;--a-paper:#fff}
+/* once the kit paints (html[data-look]) the page's own tokens follow the kit's, the accent being this page's navy */
+:root[data-look]{--a-ink:var(--text);--a-muted:var(--muted);--a-navy:var(--accent);--a-line:color-mix(in srgb,var(--text) 15%,var(--surface));
+--a-inset:color-mix(in srgb,var(--accent) 8%,var(--surface));--a-control:var(--line);--a-paper:var(--surface);--a-warn-bg:color-mix(in srgb,var(--warn) 16%,var(--surface));--a-warn-line:var(--warn);
+--a-ok-bg:color-mix(in srgb,var(--ok) 14%,var(--surface));--a-ok-line:var(--ok)}
 *{box-sizing:border-box}
-body{margin:0;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);background:var(--a-paper);color:var(--a-ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
 .band{height:6px;background:linear-gradient(90deg,#e57200 25%,#e4002b 25% 50%,#178fd7 50% 75%,#002f6c 75%)}
 main{max-width:640px;margin:0 auto;padding:16px}
-h1{font:600 24px/1.2 system-ui,sans-serif;color:var(--navy);margin:8px 0 4px}
-h2{font:600 18px/1.3 system-ui,sans-serif;color:var(--navy);margin:24px 0 8px}
+h1{font:600 24px/1.2 system-ui,sans-serif;color:var(--a-navy);margin:8px 0 4px}
+h2{font:600 18px/1.3 system-ui,sans-serif;color:var(--a-navy);margin:24px 0 8px}
 p{margin:0 0 10px}
-.muted{color:var(--muted);font-size:14px}
+.muted{color:var(--a-muted);font-size:14px}
 label{display:block;font-weight:500;margin:12px 0 4px}
-input[type=url],textarea{width:100%;font:inherit;padding:10px;border:1px solid var(--control);border-radius:0;background:#fff}
+input[type=url],textarea{width:100%;font:inherit;padding:10px;border:1px solid var(--a-control);border-radius:0;background:var(--a-paper);color:var(--a-ink)}
 textarea{min-height:140px}
-.on{background:var(--inset);padding:8px 10px;font-size:14px;white-space:pre-wrap;max-height:8em;overflow:auto}
+.on{background:var(--a-inset);padding:8px 10px;font-size:14px;white-space:pre-wrap;max-height:8em;overflow:auto}
 .check{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:15px}
 .check input{width:22px;height:22px;margin:1px 0 0;flex:none}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-button{min-height:44px;padding:0 16px;font:inherit;font-weight:500;border:1px solid var(--control);background:#fff;border-radius:0;cursor:pointer}
-button.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+button{min-height:44px;padding:0 16px;font:inherit;font-weight:500;border:1px solid var(--a-control);background:var(--a-paper);border-radius:0;cursor:pointer;color:var(--a-ink)}
+button.primary{background:var(--a-navy);border-color:var(--a-navy);color:var(--on-accent,#fff)}
 button:disabled{opacity:.5;cursor:default}
 #speak[aria-pressed=true]{background:#e4002b;border-color:#e4002b;color:#fff}
-:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
-.warn{background:#f6e7c8;border:1px solid #b07a2a;padding:8px 10px;margin:10px 0 0;font-size:15px}
-.ok{background:#e6f2ea;border:1px solid #2e7d4f;padding:8px 10px;margin:10px 0 0}
+:focus-visible{outline:2px solid var(--a-navy);outline-offset:2px}
+.warn{background:var(--a-warn-bg,#f6e7c8);border:1px solid var(--a-warn-line,#b07a2a);padding:8px 10px;margin:10px 0 0;font-size:15px}
+.ok{background:var(--a-ok-bg,#e6f2ea);border:1px solid var(--a-ok-line,#2e7d4f);padding:8px 10px;margin:10px 0 0}
 .asks{list-style:none;padding:0;margin:0}
-.asks li{border-bottom:1px solid var(--line);padding:10px 0}
+.asks li{border-bottom:1px solid var(--a-line);padding:10px 0}
 .asks .what{font-size:15px}
-.asks .state{font-size:14px;color:var(--muted)}
-a{color:var(--navy)}
+.asks .state{font-size:14px;color:var(--a-muted)}
+a{color:var(--a-navy)}
+details.look{margin-top:24px}summary{cursor:pointer;color:var(--a-muted);font-size:14px;min-height:24px}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -72,6 +83,8 @@ a{color:var(--navy)}
     <div class="row"><button class="primary" id="send">Ask Claude</button></div>
     <p class="warn" id="error" hidden role="alert"></p>
   </form>
+
+  <details class="look"><summary>Look</summary><div id="look"></div></details>
 
   <h2>Your recent asks</h2>
   <ul class="asks" id="asks"></ul>
@@ -178,6 +191,12 @@ a{color:var(--navy)}
     } finally { $('send').disabled = false; $('send').textContent = 'Ask Claude'; }
   };
 })();
+</script>
+<script type="module">
+import { applyTheme, themeSwitch } from '@core/theme';
+applyTheme({ accent: '#002f6c' });
+const look = document.querySelector('details.look');
+look.addEventListener('toggle', () => { if (look.open && !look.dataset.drawn) { look.dataset.drawn = '1'; themeSwitch(document.getElementById('look')); } });
 </script>
 </body>
 </html>
