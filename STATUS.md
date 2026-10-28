@@ -12,6 +12,7 @@
 - Nothing planned.
 
 ## Recently done
+- 28 Oct 2026: Ask page on the app core kit (app-ui 1.0.0-rc.25 theme layer, accent kept navy, Look switch in a collapsed section); same look as before.
 - Page editor (`edit/`) removed; its rules for applying page edits kept in `page-edits.md`.
 - Worker, API and tests for the host-to-repo map.
 
