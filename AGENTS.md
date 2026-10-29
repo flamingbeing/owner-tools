@@ -20,8 +20,9 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
 ```
 node .devkit/tools/check.mjs        # repo checks + Worker tests
 node .devkit/tools/proofread.mjs    # page and doc mistakes
-node ask/test/e2e.mjs        # browser test (PLAYWRIGHT_PATH, CHROMIUM_PATH)
 ```
+
+The Ask Claude browser test (`ask/test/e2e.mjs`) runs on GitHub only ("Checks", `browser` job); locally run it only when fixing it.
 
 `.devkit/` (git-ignored) holds the kit's tools; CI copies it with `app-devkit/setup-tools@v1.6.0`. Locally:
 `git clone --depth 1 --branch v1.6.0 https://github.com/flamingbeing/app-devkit /tmp/devkit && mkdir -p .devkit && cp -R /tmp/devkit/{tools,playwright,rules,worker} .devkit/`.
