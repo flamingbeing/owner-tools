@@ -4,7 +4,6 @@
 - Ask Claude only (the page editor was dropped 21 Oct 2026); issues open in the repo that owns the page.
 
 ## Waiting on the owner
-- Connect this repo to a Worker in Workers Builds, and move ask.anawj.com off the old Worker.
 - Widen the Ask Claude GitHub token (Worker secret) to the other repos in `REPOS`, and add `CLAUDE_CODE_OAUTH_TOKEN`
   as an Actions secret in each of them.
 
@@ -12,6 +11,7 @@
 - Nothing planned.
 
 ## Recently done
+- Worker is live: GitHub Actions deploys it on every push to main (the Deploy workflow, `deploy-worker`), and `wrangler.jsonc` serves ask.anawj.com as its custom domain. No Workers Builds connection needed.
 - 28 Oct 2026: Ask page on the app core kit (app-ui 1.0.0-rc.25 theme layer, accent kept navy, Look switch in a collapsed section); same look as before.
 - Page editor (`edit/`) removed; its rules for applying page edits kept in `page-edits.md`.
 - Worker, API and tests for the host-to-repo map.
